@@ -1,42 +1,38 @@
-# Завдання 1
-#  Створіть клас «Дріб». Збережіть у класі чисельник
-# та знаменник. Реалізуйте методи класу для введеннявиведення даних. Також створіть методи класу для
-# виконання арифметичних операцій (додавання,
-# віднімання, множення, ділення і т. д.). До вже
-# реалізованого класу «Дріб» додайте необхідні
-# перевантажені методи та оператори.
-class Fraction:
-    def __init__(self, numerator, denominator):
-        self.numerator = numerator
-        self.denominator = denominator
+# Завдання 4
+# До вже реалізованого класу «Книга» додайте
+# необхідні перевантажені методи та оператори.
+
+class Book:
+    def __init__(self, title, author, genre):
+        self.title = title
+        self.author = author
+        self.genre = genre
+
+    def information(self):
+        print(f"Назва: {self.title},\nАвтор: {self.author},\nЖанр: {self.genre}")
+
+    def __eq__(self, other):
+        return (self.title, self.author, self.genre) == (other.title, other.author, other.genre)
+
+    def __lt__(self, other):
+        return (self.title, self.author) < (other.title, other.author)
+
+    def __gt__(self, other):
+        return (self.title, self.author) > (other.title, other.author)
 
     def __str__(self):
-        return f"{self.numerator}/{self.denominator}"
+        return f"Книга {self.title} автора {self.author} та жанр: {self.genre}"
 
-    def __add__(self, other):
-        new_numerator = self.numerator * other.denominator + other.numerator * self.denominator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
 
-    def __sub__(self, other):
-        new_numerator = self.numerator * other.denominator - other.numerator * self.denominator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+book1 = Book("12 правил життя", "Джордана Пітерсон", "допоможи собі сам")
+book2 = Book("48 законів влади", "Роберт Грін", "нон-фікшн")
 
-    def __mul__(self, other):
-        new_numerator = self.numerator * other.numerator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+if book1 > book2:
+    print(f"Книга '{book1.title}' автора {book1.author} знаходиться в алфавітному порядку вище '{book2.title}' автора {book2.author}")
+else:
+    print(f"Книга '{book2.title}' автора {book2.author} знаходиться в алфавітному порядку вище '{book1.title}' автора {book1.author}")
 
-    def __truediv__(self, other):
-        new_numerator = self.numerator * other.denominator
-        new_denominator = self.denominator * other.numerator
-        return Fraction(new_numerator, new_denominator)
-
-fraction1 = Fraction(1, 2)
-fraction2 = Fraction(3, 4)
-
-print(fraction1 + fraction2)
-print(fraction1 - fraction2)
-print(fraction1 * fraction2)
-print(fraction1 / fraction2)
+if book1 == book2:
+    print("Книги однакові")
+else:
+    print("Книги різні")
