@@ -5,7 +5,7 @@
 # операцій. До вже реалізованого класу «Стадіон» додайте
 # необхідні перевантажені методи та оператори.
 class Stadium:
-    def __init__(self, name, date, country, city, capacity):
+    def __init__(self, name="", date="", country="", city="", capacity=0):
         self.name = name
         self.date = date
         self.country = country
