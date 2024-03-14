@@ -1,42 +1,66 @@
-# Завдання 1
-#  Створіть клас «Дріб». Збережіть у класі чисельник
-# та знаменник. Реалізуйте методи класу для введеннявиведення даних. Також створіть методи класу для
-# виконання арифметичних операцій (додавання,
-# віднімання, множення, ділення і т. д.). До вже
-# реалізованого класу «Дріб» додайте необхідні
-# перевантажені методи та оператори.
-class Fraction:
-    def __init__(self, numerator, denominator):
-        self.numerator = numerator
-        self.denominator = denominator
+# Завдання 2
+#  Реалізуйте клас «Стадіон». Збережіть у класі: назву
+# стадіону, дату відкриття, країну, місто, місткість. Реалізуйте
+# методи класу для введення-виведення даних та інших
+# операцій. До вже реалізованого класу «Стадіон» додайте
+# необхідні перевантажені методи та оператори.
+class Stadium:
+    def __init__(self, name, date, country, city, capacity):
+        self.name = name
+        self.date = date
+        self.country = country
+        self.city = city
+        self.capacity = capacity
+
+    def display(self):
+        print("Назва стадіону:", self.name)
+        print("Дата відкриття:", self.date)
+        print("Країна:", self.country)
+        print("Місто:", self.city)
+        print("Місткість:", self.capacity)
+
+    def info(self):
+        self.name = input("Введіть назву стадіону:")
+        self.date = input("Введіть дату відкриття стадіону:")
+        self.country = input("Введіть назву країни:")
+        self.city = input("Введіть місто:")
+        self.capacity = int(input("Введіть місткість стадіону:"))
 
     def __str__(self):
-        return f"{self.numerator}/{self.denominator}"
+        return f"Стадіон {self.name}, Дата відкриття: {self.date}, Знаходиться {self.country}, {self.city}, Місткість стадіону: {self.capacity}"
 
-    def __add__(self, other):
-        new_numerator = self.numerator * other.denominator + other.numerator * self.denominator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+    def __eq__(self, other):
+        return self.capacity == other.capacity
 
-    def __sub__(self, other):
-        new_numerator = self.numerator * other.denominator - other.numerator * self.denominator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+    def __lt__(self, other):
+        return self.capacity < other.capacity
 
-    def __mul__(self, other):
-        new_numerator = self.numerator * other.numerator
-        new_denominator = self.denominator * other.denominator
-        return Fraction(new_numerator, new_denominator)
+    def __le__(self, other):
+        return self.capacity <= other.capacity
 
-    def __truediv__(self, other):
-        new_numerator = self.numerator * other.denominator
-        new_denominator = self.denominator * other.numerator
-        return Fraction(new_numerator, new_denominator)
+    def __gt__(self, other):
+        return self.capacity > other.capacity
 
-fraction1 = Fraction(1, 2)
-fraction2 = Fraction(3, 4)
+    def __ge__(self, other):
+        return self.capacity >= other.capacity
 
-print(fraction1 + fraction2)
-print(fraction1 - fraction2)
-print(fraction1 * fraction2)
-print(fraction1 / fraction2)
+    def __ne__(self, other):
+        return self.capacity != other.capacity
+
+stadium1 = Stadium()
+stadium1.info()
+
+stadium2 = Stadium()
+stadium2.info()
+
+print("\nІнформація про перший стадіон:")
+stadium1.display()
+
+print("\nІнформація про другий стадіон:")
+stadium2.display()
+
+if stadium1 >= stadium2:
+    print("\nПерший стадіон має більшу місткість, ніж другий")
+else:
+    print("\nДругий стадіон має більшу місткість, ніж перший")
+
